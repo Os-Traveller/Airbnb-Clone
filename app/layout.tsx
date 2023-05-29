@@ -1,4 +1,4 @@
-import Navbar from './components/navbar/Navbar';
+import Navbar from '@/components/navbar/Navbar';
 import './globals.css';
 import { Nunito } from 'next/font/google';
 
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={font.className}>
+      <body className={`${font.className} bg-neutral-100`}>
         <Navbar />
         {children}
       </body>
