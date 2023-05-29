@@ -6,7 +6,7 @@ const font = Andika({ subsets: ['latin'], weight: ['700'] });
 
 const Logo = () => {
   return (
-    <div className='text-rose-500 font-semibold center-y gap-2'>
+    <div className='text-rose-500 font-semibold center-y gap-2 cursor-pointer'>
       <TbBrandAirbnb size={30} />
       <h1 className={`${font.className} text-2xl`}>airbnb</h1>
     </div>

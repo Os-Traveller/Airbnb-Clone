@@ -7,7 +7,7 @@ import UserMenu from './UserMenu';
 const Navbar = () => {
   return (
     <nav className='border-b py-3 bg-white'>
-      <Container className='flex justify-between items-center gap-3'>
+      <Container className='flex justify-between items-center gap-5'>
         <Logo />
         <Search />
         <UserMenu />

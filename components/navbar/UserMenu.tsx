@@ -34,8 +34,9 @@ const UserMenu = () => {
 
   return (
     <div className='center-y gap-4 relative'>
-      <button>Airbnb Your Home</button>
-      <HiOutlineGlobeAlt size={20} />
+      <button className='hidden md:block'>Airbnb Your Home</button>
+      <HiOutlineGlobeAlt className='hidden md:block' size={20} />
+
       {/* if menu hidden */}
       {!isMenuOpen && (
         <button
@@ -46,6 +47,7 @@ const UserMenu = () => {
           <Avatar image='/images/placeholder.jpg' />
         </button>
       )}
+
       {/* if menu shown */}
       {isMenuOpen && (
         <button
@@ -57,6 +59,7 @@ const UserMenu = () => {
         </button>
       )}
       {/* nav items */}
+
       {isMenuOpen && (
         <div
           ref={ref}
