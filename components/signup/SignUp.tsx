@@ -3,13 +3,18 @@ import Input from '../shared/Input';
 import LoginGoogle from '../shared/LoginGoogle';
 import LoginFacebook from '../shared/LoginFacebook';
 
-const Login = () => {
+const SignUp = () => {
   return (
     <>
       <h1 className='text-xl font-bold mt-1 mb-3'>Welcome to Airbnb</h1>
       <form action=''>
         <Input
           className='rounded-tr-lg rounded-tl-lg border-b-0'
+          id='name'
+          title='Name'
+        />
+        <Input
+          className='rounded-b-0 rounded-t-0 border-b-0'
           id='email'
           title='Email'
         />
@@ -20,7 +25,7 @@ const Login = () => {
           title='Password'
         />
         <button className='bg-rose-500 text-white font-semibold py-2 px-5 rounded-lg mt-5 w-full transition duration-300 hover:bg-rose-600 '>
-          Login
+          Sign Up
         </button>
 
         <div className='my-5 center-y gap-3'>
@@ -37,4 +42,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

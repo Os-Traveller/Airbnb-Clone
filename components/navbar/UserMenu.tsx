@@ -7,10 +7,12 @@ import { useState } from 'react';
 import MenuItem from './MenuItem';
 import Login from '../login/Login';
 import Modal from '../shared/Modal';
+import SignUp from '../signup/SignUp';
 
 const UserMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [loginModal, setLoginModal] = useState<boolean>(false);
+  const [signUpModal, setSignUpModal] = useState<boolean>(false);
 
   // to track outside click from a component
   const ref = useRef<HTMLDivElement>(null);
@@ -37,6 +39,11 @@ const UserMenu = () => {
 
   const showLoginModal = () => {
     setLoginModal(true);
+    setIsMenuOpen(false);
+  };
+
+  const showSignUpModal = () => {
+    setSignUpModal(true);
     setIsMenuOpen(false);
   };
 
@@ -73,7 +80,7 @@ const UserMenu = () => {
           ref={ref}
           className='w-[200px] bg-white rounded-xl py-2 border absolute right-0 top-[50px] flex flex-col gap-2'
         >
-          <MenuItem onClick={() => {}} label='Sign Up' />
+          <MenuItem onClick={showSignUpModal} label='Sign Up' />
           <MenuItem onClick={showLoginModal} label='Log In' />
           <div className='h-[1px] bg-neutral-200'>&nbsp;</div>
           <MenuItem onClick={() => {}} label='Airbnb Your Home' />
@@ -81,12 +88,16 @@ const UserMenu = () => {
       )}
 
       {/* login */}
-      <Modal
-        openModal={loginModal}
-        setOpenModal={setLoginModal}
-        title='Login or Sign Up'
-      >
+      <Modal openModal={loginModal} setOpenModal={setLoginModal} title='Login'>
         <Login />
+      </Modal>
+
+      <Modal
+        openModal={signUpModal}
+        setOpenModal={setSignUpModal}
+        title='Sign Up'
+      >
+        <SignUp />
       </Modal>
     </div>
   );
