@@ -20,9 +20,10 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     <html lang='en'>
       <body className={`${font.className} bg-neutral-100`}>
         <ClientOnly>
+          <section id='modal-root'></section>
           <Navbar />
         </ClientOnly>
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

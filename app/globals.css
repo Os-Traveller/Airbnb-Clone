@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.modal-bg {
+  background: rgba(122, 122, 122, 0.4);
+}
+
 @layer components {
   .center-y {
     @apply flex items-center;
+  }
+  .center-xy {
+    @apply flex justify-center items-center;
   }
 }
