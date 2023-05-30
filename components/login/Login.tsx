@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '../shared/Input';
 import LoginGoogle from '../shared/LoginGoogle';
-import LoginFacebook from '../shared/LoginFacebook';
+import LoginGithub from '../shared/LoginGithub';
 
 const Login = () => {
   return (
@@ -30,7 +30,7 @@ const Login = () => {
         </div>
         <div className='flex flex-col gap-3'>
           <LoginGoogle />
-          <LoginFacebook />
+          <LoginGithub />
         </div>
       </form>
     </>

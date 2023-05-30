@@ -35,7 +35,9 @@ const Modal: React.FC<ModalProps> = (props) => {
           />
           <h2 className='w-fit mx-auto font-bold text-xl'>{title}</h2>
         </header>
-        <div className='px-5 py-4'>{children}</div>
+        <div className='px-5 py-4 max-h-[600px] overflow-y-auto'>
+          {children}
+        </div>
       </div>
     </section>,
     document.getElementById('modal-root') as HTMLElement
