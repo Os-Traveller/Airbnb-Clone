@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import toast from 'react-hot-toast';
 import Input from '../shared/Input';
 import LoginGoogle from '../shared/LoginGoogle';
 import LoginGithub from '../shared/LoginGithub';
 
-const SignUp = () => {
+interface SignUpProps {
+  setState: Dispatch<SetStateAction<boolean>>;
+}
+
+const SignUp: FC<SignUpProps> = ({ setState }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [name, setName] = useState('');
@@ -11,7 +16,7 @@ const SignUp = () => {
   const handleSignUp = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const response = await fetch('/api/sign-up', {
+    let response = await fetch('/api/sign-up', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -19,7 +24,14 @@ const SignUp = () => {
       },
       body: JSON.stringify({ email, password, name }),
     });
-    console.log(response.json());
+    response = await response.json();
+    setState(false);
+
+    if (response) {
+      toast.success('Account create successful');
+    } else {
+      toast.error('Can not create your account');
+    }
   };
 
   return (

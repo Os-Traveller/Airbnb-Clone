@@ -4,22 +4,13 @@ interface InputProps {
   title: string;
   id: string;
   type?: string;
-  required?: boolean;
   className?: string;
   state: string;
   setSate: Dispatch<SetStateAction<string>>;
 }
 
 const Input: FC<InputProps> = (props) => {
-  const {
-    title,
-    id,
-    type = 'text',
-    required,
-    className,
-    state,
-    setSate,
-  } = props;
+  const { title, id, type = 'text', className, state, setSate } = props;
 
   return (
     <div className={`w-full border px-4 py-2 ${className}`}>
@@ -33,7 +24,6 @@ const Input: FC<InputProps> = (props) => {
         className='w-full outline-none'
         type={type}
         placeholder={title}
-        required={required}
       />
     </div>
   );

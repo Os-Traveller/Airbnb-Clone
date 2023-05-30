@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, FC } from 'react';
 import { HiOutlineGlobeAlt } from 'react-icons/hi';
 import { AiOutlineMenu } from 'react-icons/ai';
 import Avatar from '../shared/Avatar';
@@ -7,9 +7,14 @@ import { useState } from 'react';
 import MenuItem from './MenuItem';
 import Login from '../login/Login';
 import Modal from '../shared/Modal';
-import SignUp from '../signup/SignUp';
+import SignUp from '../sign_up/SignUp';
+import { User } from '@prisma/client';
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: User | null;
+}
+
+const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [loginModal, setLoginModal] = useState<boolean>(false);
   const [signUpModal, setSignUpModal] = useState<boolean>(false);
@@ -80,25 +85,44 @@ const UserMenu = () => {
           ref={ref}
           className='w-[200px] bg-white rounded-xl py-2 border absolute right-0 top-[50px] flex flex-col gap-2'
         >
-          <MenuItem onClick={showSignUpModal} label='Sign Up' />
-          <MenuItem onClick={showLoginModal} label='Log In' />
-          <div className='h-[1px] bg-neutral-200'>&nbsp;</div>
-          <MenuItem onClick={() => {}} label='Airbnb Your Home' />
+          {currentUser ? (
+            <>
+              <MenuItem onClick={() => {}} label='My Trips' />
+              <MenuItem onClick={() => {}} label='MY Favorite' />
+              <MenuItem onClick={() => {}} label='MY Reservations' />
+              <MenuItem onClick={() => {}} label='Airbnb My Home' />
+              <hr />
+              <MenuItem onClick={() => {}} label='Logout' />
+            </>
+          ) : (
+            <>
+              <MenuItem onClick={showSignUpModal} label='Sign Up' />
+              <MenuItem onClick={showLoginModal} label='Log In' />
+              <hr />
+              <MenuItem onClick={() => {}} label='Airbnb Your Home' />
+            </>
+          )}
         </div>
       )}
 
-      {/* login */}
-      <Modal openModal={loginModal} setOpenModal={setLoginModal} title='Login'>
-        <Login />
-      </Modal>
-
-      <Modal
-        openModal={signUpModal}
-        setOpenModal={setSignUpModal}
-        title='Sign Up'
-      >
-        <SignUp />
-      </Modal>
+      <>
+        {/* login modal*/}
+        <Modal
+          openModal={loginModal}
+          setOpenModal={setLoginModal}
+          title='Login'
+        >
+          <Login setSate={setLoginModal} />
+        </Modal>
+        {/* sign up modal */}
+        <Modal
+          openModal={signUpModal}
+          setOpenModal={setSignUpModal}
+          title='Sign Up'
+        >
+          <SignUp setState={setSignUpModal} />
+        </Modal>
+      </>
     </div>
   );
 };

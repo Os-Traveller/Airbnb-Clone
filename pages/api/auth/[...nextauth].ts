@@ -4,7 +4,7 @@ import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
-import prisma from '@/libs/prismaDb';
+import prisma from '@/app/libs/prismaDb';
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -24,6 +24,7 @@ export const authOptions: AuthOptions = {
         email: { label: 'email', type: 'text' },
         password: { label: 'password', type: 'password' },
       },
+
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Invalid Credential');
