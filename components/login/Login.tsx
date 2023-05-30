@@ -4,6 +4,7 @@ import Input from '../shared/Input';
 import LoginGoogle from '../shared/LoginGoogle';
 import LoginGithub from '../shared/LoginGithub';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface LoginProps {
   setSate: Dispatch<SetStateAction<boolean>>;
@@ -12,6 +13,7 @@ interface LoginProps {
 const Login: FC<LoginProps> = ({ setSate }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const router = useRouter();
 
   // functions
   const handleLogin = (event: FormEvent) => {
@@ -25,6 +27,7 @@ const Login: FC<LoginProps> = ({ setSate }) => {
       setSate(false);
       if (data?.ok) {
         toast.success('Login Successful', { duration: 1000 });
+        router.refresh();
       } else {
         toast.error('Login Failed', { duration: 1000 });
       }
